@@ -21,7 +21,6 @@ namespace BanditCamp.Models
 		private readonly BackgroundWorker Worker = new BackgroundWorker();
 		private string url = "";
 		private string genre = "";
-		private string notes = "";
 		private bool isEnabled = true;
 		private bool downloadMp3 = true;
 		private bool downloadJpg = true;
@@ -190,13 +189,6 @@ namespace BanditCamp.Models
 		}
 
 		public ObservableCollection<Log> Logs { get; } = new ObservableCollection<Log>();
-
-		[DataMember]
-		public string Notes
-		{
-			get => notes;
-			set => OnPropertyChanged(ref notes, value);
-		}
 
 		[DataMember]
 		public bool DownloadJpg

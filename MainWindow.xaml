@@ -18,25 +18,22 @@
 	<Window.Resources>
 		<local:StatusColorConverter x:Key="StatusColorConverter" />
 	</Window.Resources>
-	
+
 	<Grid Margin="1">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="3*"/>
-			<ColumnDefinition Width="1*"/>
-		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<Grid Grid.Column="0" Grid.Row="0">
+		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="5*"/>
-				<ColumnDefinition Width="2*"/>
 				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition Width="5*"/>
 			</Grid.ColumnDefinitions>
 
-			<UniformGrid Grid.Column="0" Rows="2">
+			<UniformGrid Grid.Column="2" Rows="2">
 				<Label Content="BANDCAMP URL (BAND / ALBUM / TRACK)"/>
 				<TextBox VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Hidden" Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}">
 					<TextBox.InputBindings>
@@ -54,7 +51,7 @@
 				</TextBox>
 			</UniformGrid>
 
-			<Border Grid.Column="2">
+			<Border Grid.Column="0">
 				<UniformGrid Rows="3" Margin="2">
 					<CheckBox IsEnabled="{Binding IsEnabled}" IsChecked="{Binding DownloadMp3}" Content="MP3"/>
 					<CheckBox IsEnabled="{Binding IsEnabled}" IsChecked="{Binding DownloadJpg}" Content="JPG"/>
@@ -63,7 +60,12 @@
 			</Border>
 		</Grid>
 
-		<DataGrid Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
+		<UniformGrid Grid.Row="1" Columns="2">
+			<Button Height="30" Content="OPEN BANDCAMP" Command="{Binding BandCampCommand}"/>
+			<Button Height="30" Content="DOWNLOAD FILES" Command="{Binding DownloadCommand}" IsEnabled="{Binding IsEnabled}"/>
+		</UniformGrid>
+
+		<DataGrid Grid.Row="2" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
 			<DataGrid.ColumnHeaderStyle>
 				<Style TargetType="DataGridColumnHeader">
 					<Setter Property="Margin" Value="0"/>
@@ -100,19 +102,5 @@
 				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
-		
-		<UniformGrid Grid.Column="1" Grid.Row="0" Rows="2">
-			<Button Height="30" Content="OPEN BANDCAMP" Command="{Binding BandCampCommand}"/>
-			<Button Height="30" Content="DOWNLOAD FILES" Command="{Binding DownloadCommand}" IsEnabled="{Binding IsEnabled}"/>
-		</UniformGrid>
-
-		<Grid Grid.Column="1" Grid.Row="1">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="30"/>
-				<RowDefinition Height="*"/>
-			</Grid.RowDefinitions>
-			<Label Grid.Row="0" Content="NOTES"/>
-			<TextBox Grid.Row="1" Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"/>
-		</Grid>
 	</Grid>
 </Window>
