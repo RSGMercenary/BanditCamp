@@ -1,7 +1,6 @@
-﻿using BanditCamp.Tracks;
-using TagLib;
+﻿using TagLib;
 
-namespace BanditCamp
+namespace BanditCamp.Tracks
 {
 	public static class Tag
 	{

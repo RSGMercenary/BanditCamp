@@ -42,10 +42,7 @@ namespace BanditCamp.Models
 			if(!IsEnabled)
 				return;
 			if(!BandCamp.IsBandCampUrl(Url))
-			{
-				Url = "Use a BandCamp URL, idiot. Be better!";
 				return;
-			}
 
 			Worker.RunWorkerAsync();
 		}
